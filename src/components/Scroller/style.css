@@ -1,0 +1,66 @@
+.wrapper {
+  padding: 0;
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 300px;
+  width:100%;
+
+  background-image: url("../../typeform_bg.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.wrapper .footer {
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  position: fixed;
+  background-color: #E6EBED;
+  border-top: 1px solid lightgrey;
+}
+
+.wrapper .footer .sticker {
+  float: right;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .footer .sticker span {
+  background-color: #52B6AC;
+  color: #333;
+  margin-right: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.wrapper .footer .sticker .btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+  background-color: #52B6AC;
+  color: #333;
+  float: right;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.wrapper .footer .sticker .btn:hover {
+  background-color: #B8F2EC;
+}

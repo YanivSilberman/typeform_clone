@@ -1,0 +1,50 @@
+.page_wrapper {
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.inner_wrapper {
+  color: #bdbdbd;
+  height: 50%;
+  width: 50%;
+  opacity: 0.5;
+  margin: auto;
+}
+
+.inner_wrapper h3 {
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.inner_wrapper.focus {
+  color: #333;
+  opacity: 1;
+}
+
+.typeform_input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  border-radius: 0;
+  outline: none;
+  height: 50px;
+  width: 90%;
+  font-size: 20px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: none;
+  box-sizing: content-box;
+  transition: all 1s;
+}
+
+.typeform_input:focus {
+  width: 100%;
+  border-bottom: 3px solid #52B6AC;
+}

@@ -1,0 +1,37 @@
+
+.answer_block {
+  border: 1px solid #55706D;
+  background-color: rgba(82, 182, 172, 0.1);
+  border-radius: 10px;
+
+  width: 105px;
+  height: 105px;
+  padding: 5px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  float:left;
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+
+  transition: all 0.5s;
+}
+
+.answer_block:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgba(82, 182, 172, 0.3);
+}
+
+.answer_block_top {
+  height: 50%;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.answer_block_bot {
+  height: 50%;
+  font-size: 45px;
+  font-weight: 700;
+}
