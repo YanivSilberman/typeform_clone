@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateHowAreYou } from "../../../actions";
@@ -25,6 +27,11 @@ export class HowAreYou extends React.Component {
     );
   }
 }
+
+HowAreYou.propTypes = {
+  nameValue: PropTypes.string
+};
+
 
 function mapDispatchToProps(dispatch) {
   return {

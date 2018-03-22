@@ -1,18 +1,20 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import { updateName, updatePage } from "../../../actions";
 import PageWrapper from "../wrapper";
 import ContBtn from './continue'
+
 import "./style.css"
 import "../style.css"
 import $ from 'jquery'
 
 export class Name extends React.Component {
 
-  onChange = value => {
-    this.props.dispatch(updateName(value));
-  };
+  onChange = value => this.props.dispatch(updateName(value));
 
   onNextClick = () => this.props.translate(1);
 
@@ -45,6 +47,11 @@ export class Name extends React.Component {
     );
   }
 }
+
+Name.propTypes = {
+  nameValue: PropTypes.string
+};
+
 
 function mapDispatchToProps(dispatch) {
   return {

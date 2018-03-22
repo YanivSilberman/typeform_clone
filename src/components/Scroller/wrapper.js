@@ -1,40 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updatePageHeight, updatePage } from "../../actions";
-import disableScroll from "./disable";
-import './style.css'
 import $ from "jquery";
 
+import { updatePage } from "../../actions";
+
+import './style.css'
 
 
 export class Wrapper extends React.Component {
 
-  componentDidMount() {
-    this.getContainerHeight();
-
-    let scrollableElement = document.getElementById("wrapper");
-    scrollableElement.addEventListener("wheel", this.props.onScroll);
-  }
-
   footerClick = dir => {
-    const { page } = this.props;
-    let new_page = parseInt(page);
+    let new_page = parseInt(this.props.page);
     const add = ( dir === "up" ) ? new_page-1 : new_page+1;
-    console.log("footer click", add)
+    //this.props.dispatch(updatePage(add));
     this.props.translate(add);
   }
 
-  getContainerHeight = () => {
-    let height = $("#wrapper").height();
-    height = height / 2;
-    this.props.dispatch(updatePageHeight(height));
-  };
+  createFooterBtns = () => {
+    const btns = ["up", "down"], iconPrefix = "keyboard_arrow_";
 
-
+    return btns.map((btn, i) =>
+      <div key={i} className="btn" onClick={()=>{this.footerClick(btn)}}>
+        <i className="material-icons large">
+          { iconPrefix + btn }
+        </i>
+      </div>
+    )
+  }
 
   render() {
-    const { translateY } = this.props;
 
     return (
       <div className="wrapper" id="wrapper">
@@ -42,12 +37,7 @@ export class Wrapper extends React.Component {
         <div className="footer">
           <div className="sticker">
             <span>Powered by Yanform</span>
-            <div className="btn" onClick={()=>{this.footerClick("down")}}>
-              <i className="material-icons large">keyboard_arrow_down</i>
-            </div>
-            <div className="btn" onClick={()=>{this.footerClick("up")}}>
-              <i className="material-icons large">keyboard_arrow_up</i>
-            </div>
+            { this.createFooterBtns() }
           </div>
         </div>
       </div>
@@ -58,7 +48,7 @@ export class Wrapper extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
-      { ...updatePageHeight, ...updatePage },
+      { ...updatePage },
       dispatch
     )
   };

@@ -31,6 +31,7 @@ export function updateName(name) {
 }
 
 export function updatePage(page) {
+  console.log(page);
   return {
     type: "UPDATE_PAGE",
     payload: page

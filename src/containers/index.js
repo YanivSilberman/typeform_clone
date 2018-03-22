@@ -1,22 +1,27 @@
+/*
+
+MAIN CONTAINER HANDLES ALL INPUT PROPS
+
+*/
+
 import React from "react";
 import { connect } from "react-redux";
 import Scroller from "../components/Scroller";
 
-export class Typeform extends React.Component {
-
-  render() {
-    return <Scroller {...this.props} />
-  }
-}
+export const Typeform = ({ props }) => <Scroller {...props} />
 
 function mapStateToProps(state) {
   return {
+    // modules/form_reducers
     nameValue: state.form.nameValue,
-    pageHeight: state.form.pageHeight,
-    selectedDescribeCandidate: state.form.selectedDescribeCandidate,
-    optionsDescribeCandidate: state.form.optionsDescribeCandidate,
+    selectedCandidates: state.form.selectedCandidates,
+    optionsCandidates: state.form.optionsCandidates,
     topCandidates: state.form.topCandidates,
-    page: state.form.page,
+
+    // modules/page_reducers
+    pageHeight: state.page.pageHeight,
+    page: state.page.page,
   };
 }
+
 export default connect(mapStateToProps)(Scroller);

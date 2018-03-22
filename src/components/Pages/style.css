@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
 
+  overflow: hidden;
 }
 
 .inner_wrapper {
@@ -16,6 +17,12 @@
   width: 50%;
   opacity: 0.5;
   margin: auto;
+}
+
+@media(max-width: 600px) {
+  .inner_wrapper {
+    width: 95%;
+  }
 }
 
 .inner_wrapper h3 {

@@ -4,8 +4,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import store from './store'
+
+import TopCandidates from './index';
+import Candidate from './Candidate'
+
+import store from '../../../store'
 
 import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -13,6 +16,10 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 it('Router app renders without crashing', () => {
-  const wrapper = Enzyme.shallow(<App store={store} />);
+  const wrapper = Enzyme.shallow(
+    <TopCandidates store={store} topCandidates={[]} />
+  );
   expect(wrapper).toMatchSnapshot();
+  // props
+  expect(wrapper.prop('topCandidates')).toEqual([]);
 });

@@ -1,47 +1,49 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+// redux actions
 import { updatePage } from '../../actions'
 
-import {focusVisibleElements, focusVisibleContainer} from "./focus"
+// helper functions
+import handleElementFocus from "../../helpers/focus"
+import wheel from "../../helpers/wheel"
+
+// page #wrapper
 import Wrapper from "./wrapper";
 
+// form components
 import Name from "../Pages/Name";
 import HowAreYou from "../Pages/HowAreYou";
 import TopCandidates from "../Pages/TopCandidates";
 import DescribeCandidate from "../Pages/DescribeCandidate";
 
-import $ from 'jquery'
 
 export class Scroller extends React.Component {
 
-  componentDidMount(){
+  componentDidMount = () => {
     this.onScroll();
-  }
-
-  onScroll = event => {
-    let i, is_focused;
-    let input_list = [ "name_input", "describe_input" ];
-    for (i in input_list) focusVisibleElements(input_list[i]);
-
-    let container_list = ["name_container", "how_container", "desc_container", "top_container"];
-    for (i in container_list) {
-      is_focused = focusVisibleContainer(container_list[i]);
-      if (is_focused) this.props.dispatch(updatePage(i));
-    };
+    let scrollableElement = document.getElementById("wrapper");
+    scrollableElement.addEventListener("wheel", this.onScroll);
   };
 
-  translate = page => {
-    const { pageHeight } = this.props;
-    const tran = page * pageHeight;
-    const $t = tran.toString() + "px";
-    $("#wrapper").animate(
-      { scrollTop: $t },
-      300,
-      this.onScroll
-    );
+  _focus = () => {
+    const self = this;
+    function callback(i){
+      self.props.dispatch(updatePage(i))
+    }
+    handleElementFocus(callback);
   }
+
+  // manage page in reducer and element focus
+  onScroll = event => this._focus();
+
+  updatePage = page => this.props.dispatch(updatePage(page));
+
+  // wheel scrollTop to corrent height
+  translate = page => wheel(page, this.updatePage);
 
   render() {
     return (
@@ -58,6 +60,10 @@ export class Scroller extends React.Component {
     );
   }
 }
+
+Scroller.propTypes = {
+  pageHeight: PropTypes.number
+};
 
 function mapDispatchToProps(dispatch) {
   return {

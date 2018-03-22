@@ -32,11 +32,7 @@ export class DescribeCandidate extends React.Component {
     }
   }
 
-  onEnter = e => {
-    if (e.key === 'Enter') {
-      this.props.translate(3);
-    }
-  }
+  onEnter = e => (e.key === 'Enter') ? this.props.translate(3) : null;
 
   render() {
     return (
