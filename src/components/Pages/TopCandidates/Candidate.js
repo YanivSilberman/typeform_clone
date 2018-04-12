@@ -9,7 +9,8 @@ export default class Candidate extends React.Component {
   }
 
   render(){
-    const { name, src, video_id } = this.props;
+    const candidate = this.props;
+    const { src, name } = candidate;
     const $bg = "url(%)".replace("%", src)
     return (
       <div className="candidate">
@@ -17,7 +18,7 @@ export default class Candidate extends React.Component {
         <div
           className="img_container"
           style={{backgroundImage: $bg}}
-          onClick={()=>this.props.onVideoClick(video_id)}>
+          onClick={()=>this.props.onVideoClick(candidate)}>
           <i className="material-icons large">play_arrow</i>
         </div>
 

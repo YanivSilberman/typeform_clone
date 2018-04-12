@@ -15,8 +15,8 @@ import './style.css'
 export class TopCandidates extends React.Component {
 
   state = {
-    showVideo: false,
-    videoSrc: ""
+    showBio: false,
+    candidate: {}
   }
 
   createCandidates = (candidate, i) =>
@@ -25,22 +25,22 @@ export class TopCandidates extends React.Component {
   mapCandidates = () => this.props.topCandidates.map(this.createCandidates);
 
   onClick = pick => this.props.dispatch(pickCandidate(pick));
-  onVideoClick = src => this.setState({ showVideo: true, videoSrc: src })
+  onVideoClick = cand => this.setState({ showBio: true, candidate: cand })
 
   afterOpenModal = () => {
   }
 
   closeModal = () => {
-    this.setState({showVideo: false, videoSrc: ""});
+    this.setState({showBio: false, candidate: {}});
   }
 
   render() {
 
-    const $modal = !this.state.showVideo ? null :
+    const $modal = !this.state.showBio ? null :
       <VideoPlayer
         closeModal={this.closeModal}
         afterOpenModal={this.afterOpenModal}
-        src={this.state.videoSrc}
+        candidate={this.state.candidate}
       />;
 
     return (
